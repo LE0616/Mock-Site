@@ -20,8 +20,8 @@ class Students extends React.Component {
           {
             students.map(student => {
               return (
-                <li>
-                  <NavLink to={`/students/${student.id}`} key={student.id}>{student.firstName} {student.lastName}</NavLink>
+                <li key={student.id}>
+                  <NavLink to={`/students/${student.id}`} >{student.firstName} {student.lastName}</NavLink>
                   </li>
               )
             })

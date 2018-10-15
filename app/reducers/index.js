@@ -21,7 +21,7 @@ const campusReducer = (campuses = initialCampuses, action) => {
       return {...campuses, singleCampus: action.singleCampus}
 
       case 'ADD_CAMPUS':
-        return { ...campuses, allCampuses:  [...allCampuses, action.campus]}
+        return { ...campuses, allCampuses:  [...campuses.allCampuses, action.campus]}
 
       default: return campuses;
     }
@@ -37,7 +37,7 @@ const studentReducer = (students = initialStudents, action) => {
         return {...students, singleStudent: action.singleStudent}
 
       case 'ADD_STUDENT':
-        return {...students, allStudents: [...allStudents, action.student]}
+        return {...students, allStudents: [...students.allStudents, action.student]}
 
       default: return students;
     }

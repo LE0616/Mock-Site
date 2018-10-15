@@ -28,8 +28,9 @@ router.get('/:campusId', async (req, res, next) => {
 router.post('/', async (req, res) => {
   try {
     const campus = await Campus.create(req.body);
-    res.json(campus);
     console.log('POSTED CAMPUS INSIDE ROUTE', campus);
+    res.json(campus);
+
   } catch (err) {
     res.send(err);
   }

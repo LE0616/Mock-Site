@@ -6,14 +6,14 @@ import { postCampus } from '../store'
 class NewCampus extends React.Component {
   constructor(){
     super();
-    this.input = {
+    this.state = {
       name: '',
-      address: '',
       imageUrl: null,
-      description: null
+      address: '',
+      description: ''
     }
-    this.handleChange.bind(this);
-    this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(e) {
@@ -22,43 +22,45 @@ class NewCampus extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const newCampus = this.input;
+    const newCampus = this.state;
+    console.log('NEWCAMPUS INSIDE SUBMIT HANDLER: ', newCampus)
     this.props.addNewCampusToServer(newCampus);
   }
 
   render() {
     return (
-      <form className='form-inline'>
+      <form className='campus-form-inline'>
         <label>Add new Campus:</label>
         <p></p>
         <p></p>
         Name: <input
           type='text'
           name='name'
-          className='form-control'
+          className='campus-form-control'
           onChange={this.handleChange}
+          //value={this.state.firstName}
            />
-        Address: <input
-          type='text'
-          name='address'
-          className='form-control'
-          onChange={this.handleChange}
-          />
         Image URL: <input
           type='text'
           name='imageUrl'
-          className='form-control'
+          className='campus-form-control'
+          onChange={this.handleChange}
+          />
+        Address: <input
+          type='text'
+          name='address'
+          className='campus-form-control'
           onChange={this.handleChange}
           />
         Description: <input
           type='text'
           name='description'
-          className='form-control'
+          className='campus-form-control'
           onChange={this.handleChange}
           />
           <p></p>
           <p></p>
-        <button type='submit' onSubmit={this.handleSubmit} value='Submit'>Submit</button>
+        <button type='submit' onClick={this.handleSubmit}>Submit</button>
       </form>
     );
   }

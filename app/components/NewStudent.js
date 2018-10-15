@@ -34,35 +34,35 @@ class NewStudent extends React.Component {
 
   render() {
     return (
-      <form className='form-inline'>
+      <form className='student-form-inline'>
         <label>Add new Student:</label>
         <p></p>
         <p></p>
         First Name: <input
           type='text'
           name='firstName'
-          className='form-control'
+          className='student-form-control'
           onChange={this.handleChange}
           //value={this.state.firstName}
            />
         Last Name: <input
           type='text'
           name='lastName'
-          className='form-control'
+          className='student-form-control'
           onChange={this.handleChange}
           //value={this.state.lastName}
           />
         Image URL: <input
           type='text'
           name='imageUrl'
-          className='form-control'
+          className='student-form-control'
           onChange={this.handleChange}
           //value={this.state.imageUrl}
           />
         Email: <input
           type='text'
           name='email'
-          className='form-control'
+          className='student-form-control'
           onChange={this.handleChange}
           //value={this.state.email}
           />

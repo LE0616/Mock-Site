@@ -19,8 +19,9 @@ class SingleCampus extends React.Component {
     return (
       <div>
         <h1>{campus.name}</h1>
-        <img src={campus.imageUrl} id={`${campus.name}Img`}></img>
-          <body className='campus details'>
+
+          <div className='campus details'>
+            <img src={campus.imageUrl} id={`${campus.name}Img`}></img>
             <p>{campus.address}</p>
             <p></p>
             <p>{campus.description}</p>
@@ -36,7 +37,7 @@ class SingleCampus extends React.Component {
                 )
               })
             }</ol>
-          </body>
+          </div>
       </div>
     )
   }
