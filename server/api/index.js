@@ -10,10 +10,10 @@ const router = require('express').Router()
 //
 // For your `/api/puppies` routes:
 // router.use('/puppies', require('./puppies'))
-//
+router.use('/students', require('./students'))
 // And for your `/api/kittens` routes:
 // router.use('/kittens', require('./kittens'))
-
+router.use('/campuses', require('./campuses'))
 // If someone makes a request that starts with `/api`,
 // but you DON'T have a corresponding router, this piece of
 // middleware will generate a 404, and send it to your
@@ -24,4 +24,4 @@ router.use((req, res, next) => {
   next(err)
 })
 
-module.exports = router
+module.exports = router;

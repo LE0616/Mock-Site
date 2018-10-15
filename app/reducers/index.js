@@ -1,15 +1,51 @@
-// `combineReducers` is not currently being used...but it should!
-// When you're ready to use it, un-comment the line below!
+import { combineReducers } from 'redux'
+import { ENOTCONN } from 'constants'
 
-// import {combineReducers} from 'redux'
+const initialCampuses = ({
+  allCampuses: [],
+  singleCampus: {}
+})
 
-const initialState = {}
+const initialStudents = ({
+  allStudents: [],
+  singleStudent: {}
+})
 
-const rootReducer = (state = initialState, action) => {
-  switch (action.type) {
-    default:
-      return state
-  }
+const campusReducer = (campuses = initialCampuses, action) => {
+    switch(action.type) {
+
+      case 'GOT_CAMPUSES_FROM_SERVER':
+      return {...campuses, allCampuses: action.allCampuses}
+
+      case 'GOT_SINGLE_CAMPUS_FROM_SERVER':
+      return {...campuses, singleCampus: action.singleCampus}
+
+      case 'ADD_CAMPUS':
+        return [...campuses, action.campus]
+
+      default: return campuses;
+    }
 }
+
+const studentReducer = (students = initialStudents, action) => {
+    switch(action.type) {
+
+      case 'GOT_STUDENTS_FROM_SERVER':
+        return {...students, allStudents: action.allStudents}
+
+      case 'GOT_SINGLE_STUDENT_FROM_SERVER':
+        return {...students, singleStudent: action.singleStudent}
+
+      case 'ADD_STUDENT':
+        return [...students, action.student]
+
+      default: return students;
+    }
+}
+
+const rootReducer = combineReducers({
+    students: studentReducer,
+    campuses: campusReducer
+});
 
 export default rootReducer
