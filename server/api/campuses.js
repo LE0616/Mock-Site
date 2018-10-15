@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Campus} = require('../db/index')
+const { Campus, Student} = require('../db/index')
 
 // GET /api/campuses
 router.get('/', async (req, res, next) => {
@@ -10,13 +10,40 @@ router.get('/', async (req, res, next) => {
     next(err);
   }
 });
+
 // GET /api/campuses/:campusId
-router.get('/:campusId', (req, res, next) => {
-    Campus.findById(req.params.campusId, {
-      include: [{Model: 'Student'}]
-    })
-      .then(campus => res.json(campus))
-      .catch (next);
+router.get('/:campusId', async (req, res, next) => {
+  try {
+    const campus = await Campus.findById(req.params.campusId, {
+      include: [{model: Student}]
+    });
+    console.log('SINGLE campus INSIDE ROUTE', campus);
+    res.json(campus);
+  } catch (err) {
+    next(err);
+  }
 });
 
+//POST /api/campuses
+router.post('/', async (req, res, next) => {
+  try {
+    const campus = await Campus.create(req.body);
+    res.json(campus);
+    console.log('POSTED CAMPUS INSIDE ROUTE', campus);
+  } catch (err) {
+    next(err);
+  }
+})
+
+//DELETE /api/campuses/:campusId
+router.delete('/:campusId', async (req, res, next) => {
+  try {
+    const id = req.params.CampusId;
+    await Campus.destroy({ where: { id }});
+
+    res.send(204).end();
+  } catch (err) {
+    next(err);
+  }
+})
 module.exports = router;

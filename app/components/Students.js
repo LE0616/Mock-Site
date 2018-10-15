@@ -27,6 +27,7 @@ class Students extends React.Component {
             })
           }
         </ul>
+        <NavLink to={'/students/add_student'}>New Student? Add yourself here.</NavLink>
       </div>
     )
   }

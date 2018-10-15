@@ -30,16 +30,39 @@ export const fetchStudents = () => {
 //Fetching ONE
 export const fetchCampus = (id) => {
   return async (dispatch) => {
+    console.log('CAMPUS ID INSIDE THUNK', id);
     const { data } = await axios.get(`/api/campuses/${id}`);
+    console.log('SINGLE_CAMPUS_INSIDE_THUNK: ', data);
     dispatch(gotSingleCampus(data));
   }
 }
 export const fetchStudent = (id) => {
   return async (dispatch) => {
+    console.log('STUDENT ID INSIDE THUNK', id);
     const { data } = await axios.get(`/api/students/${id}`);
+    console.log('SINGLE_STUDENT_INSIDE_THUNK: ', data);
     dispatch(gotSingleStudent(data));
   }
 }
+
+//Posting new instance
+export const postCampus = (campus) => {
+  return async (dispatch) => {
+    const { data } = await axios.post('/api/campuses', campus);
+    console.log('POSTED_CAMPUS_INSIDE_THUNK: ', data);
+    dispatch(addCampus(data));
+  }
+}
+
+export const postStudent = (student) => {
+  return async (dispatch) => {
+    const { data } = await axios.post('/api/students', student);
+    console.log('POSTED_STUDENT_INSIDE_THUNK: ', data);
+    dispatch(addStudent(data));
+  }
+}
+
+
 
 export default createStore(
   rootReducer,

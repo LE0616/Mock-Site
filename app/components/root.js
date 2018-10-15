@@ -1,10 +1,13 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
+import Navbar from './Navbar'
+
 import Campuses from './Campuses'
 import Students from './Students'
-import Navbar from './Navbar'
 import SingleCampus from './SingleCampus'
 import SingleStudent from './SingleStudent'
+import NewCampus from './NewCampus'
+import NewStudent from './NewStudent'
 
 
 const Root = () => {
@@ -20,8 +23,10 @@ const Root = () => {
             <Route exact path={'/campuses'} render={(routeProps) => <Campuses {...routeProps} />} />
             <Route exact path={'/students'} render={(routeProps) => <Students {...routeProps} />} />
             <Route exact path={'/'} render={(routeProps) => <Campuses {...routeProps} />} />
-            <Route exact path={'/campuses/:campusId'} render={(routeProps) => <SingleCampus {...routeProps} />} />
-            <Route exact path={'/students/:studentId'} render={(routeProps) => <SingleStudent {...routeProps} />} />
+            <Route  path={'/campuses/:campusId'} render={(routeProps) => <SingleCampus {...routeProps} />} />
+            <Route  path={'/students/:studentId'} render={(routeProps) => <SingleStudent {...routeProps} />} />
+            <Route exact path={'/campuses/add_campus'} render={(routeProps) => <NewCampus {...routeProps}/>} />
+            <Route exact path={'/students/add_student'} render={(routeProps) => <NewStudent {...routeProps}/>} />
           </Switch>
 
         </main>

@@ -8,6 +8,7 @@ class SingleCampus extends React.Component {
 
   async componentDidMount() {
     const id = this.props.match.params.campusId;
+    console.log('**CAMPUS_ID_INSIDE_MOUNT: ', id);
     this.props.fetchInitialCampus(id);
   }
 
@@ -26,6 +27,7 @@ class SingleCampus extends React.Component {
             <p></p>
             <h2>{`Students of ${campus.name}`}</h2>
             <ol>{
+              campus.length > 0 &&
               campus.students.map(student => {
                 return (
                   <li>
@@ -45,6 +47,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({fetchInitialCampus: (id) => {
+  console.log('**CAMPUS_ID_INSIDE_MAPDISPATCH: ', id);
   dispatch(fetchCampus(id)) }});
 
 export default connect(mapStateToProps, mapDispatchToProps)(SingleCampus);

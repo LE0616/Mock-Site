@@ -31,6 +31,7 @@ class Campuses extends React.Component {
           })
         }
       </ul>
+      <NavLink to={'/campuses/add_campus'}>New Campus? Add it here.</NavLink>
     </div>
   )
   }

@@ -7,6 +7,7 @@ import { fetchStudent } from '../store'
 class SingleStudent extends React.Component {
   async componentDidMount() {
     const id = this.props.match.params.studentId;
+    console.log('**STUDENT_ID_INSIDE_MOUNT: ', id);
     this.props.fetchInitialStudent(id);
   }
 
@@ -22,7 +23,9 @@ class SingleStudent extends React.Component {
               <p></p>
               <p>{student.email}</p>
               <p>{student.gpa}</p>
+              {student.length > 0 &&
               <NavLink to={`/campuses/${student.campus.id}`} >{student.campus.name}</NavLink>
+              }
             </body>
         </div>
       )
@@ -34,6 +37,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   fetchInitialStudent: (id) => {
+    console.log('**STUDENT_ID_INSIDE_MAPDISPATCH: ', id);
     dispatch(fetchStudent(id)) }});
 
 export default connect(mapStateToProps, mapDispatchToProps)(SingleStudent);
