@@ -20,7 +20,8 @@ class NewCampus extends React.Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  handleSubmit() {
+  handleSubmit(e) {
+    e.preventDefault();
     const newCampus = this.input;
     this.props.addNewCampusToServer(newCampus);
   }
@@ -29,6 +30,8 @@ class NewCampus extends React.Component {
     return (
       <form className='form-inline'>
         <label>Add new Campus:</label>
+        <p></p>
+        <p></p>
         Name: <input
           type='text'
           name='name'
@@ -44,7 +47,7 @@ class NewCampus extends React.Component {
         Image URL: <input
           type='text'
           name='imageUrl'
-          placeholder='Enter an image Url of new campus' className='form-control'
+          className='form-control'
           onChange={this.handleChange}
           />
         Description: <input
@@ -53,6 +56,8 @@ class NewCampus extends React.Component {
           className='form-control'
           onChange={this.handleChange}
           />
+          <p></p>
+          <p></p>
         <button type='submit' onSubmit={this.handleSubmit} value='Submit'>Submit</button>
       </form>
     );

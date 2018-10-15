@@ -21,12 +21,13 @@ const Root = () => {
           <p>This seems like a nice place to get started with some Routes!</p>
           <Switch>
             <Route exact path={'/campuses'} render={(routeProps) => <Campuses {...routeProps} />} />
-            <Route exact path={'/students'} render={(routeProps) => <Students {...routeProps} />} />
-            <Route exact path={'/'} render={(routeProps) => <Campuses {...routeProps} />} />
-            <Route  path={'/campuses/:campusId'} render={(routeProps) => <SingleCampus {...routeProps} />} />
-            <Route  path={'/students/:studentId'} render={(routeProps) => <SingleStudent {...routeProps} />} />
             <Route exact path={'/campuses/add_campus'} render={(routeProps) => <NewCampus {...routeProps}/>} />
-            <Route exact path={'/students/add_student'} render={(routeProps) => <NewStudent {...routeProps}/>} />
+            <Route exact path={'/campuses/:campusId'} render={(routeProps) => <SingleCampus {...routeProps} />} />
+            <Route exact path={'/students'} render={(routeProps) => <Students {...routeProps} />} />
+            <Route exact path={'/students/add_student'} render={(routeProps) => <NewStudent {...routeProps} />} />
+            <Route exact path={'/students/:studentId'} render={(routeProps) => <SingleStudent {...routeProps} />} />
+
+            <Route exact path={'/'} render={(routeProps) => <Campuses {...routeProps} />} />
           </Switch>
 
         </main>

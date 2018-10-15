@@ -25,25 +25,25 @@ router.get('/:campusId', async (req, res, next) => {
 });
 
 //POST /api/campuses
-router.post('/', async (req, res, next) => {
+router.post('/', async (req, res) => {
   try {
     const campus = await Campus.create(req.body);
     res.json(campus);
     console.log('POSTED CAMPUS INSIDE ROUTE', campus);
   } catch (err) {
-    next(err);
+    res.send(err);
   }
 })
 
 //DELETE /api/campuses/:campusId
-router.delete('/:campusId', async (req, res, next) => {
+router.delete('/:campusId', async (req, res) => {
   try {
     const id = req.params.CampusId;
     await Campus.destroy({ where: { id }});
 
     res.send(204).end();
   } catch (err) {
-    next(err);
+    res.send(err);
   }
 })
 module.exports = router;

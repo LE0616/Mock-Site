@@ -6,54 +6,69 @@ import { postStudent } from '../store'
 class NewStudent extends React.Component {
   constructor(){
     super();
-    this.input = {
-      name: '',
-      address: '',
-      imageUrl: null,
+    this.state = {
+      firstName: '',
+      lastName: '',
+      imageUrl: '',
       email: '',
     }
-    this.handleChange.bind(this);
-    this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  handleSubmit() {
-    const newStudent = this.input;
+  handleSubmit(e) {
+    e.preventDefault();
+    const newStudent = this.state;
     this.props.addNewStudentToServer(newStudent);
+    // this.setState({
+    //   firstName: '',
+    //   lastName: '',
+    //   imageUrl: '',
+    //   email: '',
+    // });
   }
 
   render() {
     return (
       <form className='form-inline'>
         <label>Add new Student:</label>
+        <p></p>
+        <p></p>
         First Name: <input
           type='text'
           name='firstName'
           className='form-control'
           onChange={this.handleChange}
+          //value={this.state.firstName}
            />
         Last Name: <input
           type='text'
           name='lastName'
           className='form-control'
           onChange={this.handleChange}
+          //value={this.state.lastName}
           />
         Image URL: <input
           type='text'
           name='imageUrl'
-          placeholder='Enter an image Url of YOU!' className='form-control'
+          className='form-control'
           onChange={this.handleChange}
+          //value={this.state.imageUrl}
           />
         Email: <input
           type='text'
           name='email'
           className='form-control'
           onChange={this.handleChange}
+          //value={this.state.email}
           />
-        <button type='submit' onSubmit={this.handleSubmit} value='Submit'>Submit</button>
+          <p></p>
+          <p></p>
+        <button type='submit' onClick={this.handleSubmit}>Submit</button>
       </form>
     );
   }

@@ -26,24 +26,24 @@ router.get('/:studentId', async (req, res, next) => {
 });
 
 //POST /api/students
-router.post('/', async (req, res, next) => {
+router.post('/', async (req, res) => {
   try {
     const student = await Student.create(req.body);
     console.log('POSTED STUDENT INSIDE ROUTE', student);
     res.json(student)
   } catch (err) {
-    next(err)
+    res.send(err)
   }
 })
 
 //DELETE /api/students/:studentId
-router.delete('/:studentId', async (req, res, next) => {
+router.delete('/:studentId', async (req, res) => {
   try {
     const id = req.params.studentId;
     await Student.destroy({ where: { id }});
     res.send(204).end();
   } catch (err) {
-    next(err);
+    res.send(err);
   }
 })
 
