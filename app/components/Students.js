@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { fetchStudents, deleteStudent } from '../store'
-
 import { NavLink } from 'react-router-dom'
+
 
 class Students extends React.Component {
 
@@ -12,25 +12,25 @@ class Students extends React.Component {
   }
 
   async componentDidMount () {
-    this.props.fetchInitialStudents();
+    this.props.fetchInitialStudents()
+
   }
-//pos = myArray.map(function(e) { return e.hello; }).indexOf('stevie');
   handleClick(e) {
     const id = +e.target.value;
     const idArr = this.props.students.map(elem => elem.id);
     const index = idArr.indexOf(id);
-
-    console.log('mapper retruns: ', idArr);
-    console.log('id:', id);
-    console.log('INDEX?: ', index);
     this.props.removeFormerStudent(id, index);
   }
 
   render () {
-    console.log(this.props.students);
     const students = this.props.students;
 
      return (
+       !students ?
+       <div>
+         <img src='https://i.gifer.com/AGNB.gif'></img>
+       </div>
+       :
       <div>
         <h3>STUDENTS</h3>
         <ul>

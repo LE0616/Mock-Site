@@ -50,4 +50,15 @@ router.delete('/:studentId', async (req, res) => {
   }
 })
 
+//PUT-UPDATE /api/campuses/:campusId
+router.put('/:studentId',async (req, res) => {
+  try {
+    const studentToUpdate = await Student.findById(req.params.studentId);
+    await studentToUpdate.update(req.body);
+    res.status(204).send('Student updated!');
+  } catch (err) {
+    res.send(err);
+  }
+})
+
 module.exports = router;

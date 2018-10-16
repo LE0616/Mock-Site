@@ -22,10 +22,14 @@ class Campuses extends React.Component {
   }
 
   render () {
-    console.log(this.props.campuses)
     const campuses = this.props.campuses;
 
   return (
+    !campuses ?
+    <div>
+      <img src='https://i.gifer.com/AGNB.gif'></img>
+    </div>
+    :
     <div>
       <h3>CAMPUSES</h3>
       <ul>

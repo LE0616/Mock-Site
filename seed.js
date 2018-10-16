@@ -16,18 +16,24 @@ const campuses = [ {
 }
 ];
 
+const id = () => Math.round(Math.random() * campuses.length - 1) + 1;
+
 const students = [ {
+  campusId: id(),
   firstName: 'David',
   lastName: 'Jenkins',
   email: 'dave@fakemail.com',
   imageUrl: 'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/1937156_100144123342689_7785414_n.jpg?_nc_cat=105&oh=04961ea1f079d24180f18e053fefcd88&oe=5C6257C5',
   gpa: 2.9
+
 }, {
+  campusId: id(),
   firstName: 'Alison',
   lastName: 'Parker',
   email: 'ali@fakemail.com',
   imageUrl: 'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/42155147_10103562827577147_4393873151512018944_n.jpg?_nc_cat=111&oh=2a3e1f8c78a8dfc6f50f3ecc5aa45c58&oe=5C4AFBFD',
-  gpa: 3.4
+  gpa: 3.4,
+
 }
 ];
 

@@ -1,12 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { postStudent } from '../store'
+import { postStudent, fetchCampuses } from '../store'
 
 
 class NewStudent extends React.Component {
   constructor(){
     super();
     this.state = {
+      campusId: null,
       firstName: '',
       lastName: '',
       imageUrl: null,
@@ -14,9 +15,15 @@ class NewStudent extends React.Component {
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.validateForm =this.validateForm.bind(this);
+  }
+
+  async componentDidMount() {
+    this.props.fetchInitialCampuses();
   }
 
   handleChange(e) {
+    console.log('onChange:', {[e.target.name]: e.target.value})
     this.setState({ [e.target.name]: e.target.value });
   }
 
@@ -24,6 +31,28 @@ class NewStudent extends React.Component {
     e.preventDefault();
     const newStudent = this.state;
     this.props.addNewStudentToServer(newStudent);
+    this.setState({
+      campusId: null,
+      firstName: '',
+      lastName: '',
+      imageUrl: null,
+      email: '',
+    })
+    alert('New Student Submitted!');
+  }
+
+  validateForm(e) {
+    e.preventDefault();
+    if (this.state.firstName == '') {
+      alert('> first name required <')
+    } else if (this.state.lastName == '') {
+      alert('> last name required <')
+    } else if (this.state.email == '') {
+      alert('> email required - must be valid address <')
+    } else {
+      this.handleSubmit(e)
+    }
+
   }
 
   render() {
@@ -37,38 +66,57 @@ class NewStudent extends React.Component {
           name='firstName'
           className='student-form-control'
           onChange={this.handleChange}
-          //value={this.state.firstName}
+          value={this.state.firstName}
            />
         Last Name: <input
           type='text'
           name='lastName'
           className='student-form-control'
           onChange={this.handleChange}
-          //value={this.state.lastName}
+          value={this.state.lastName}
           />
         Image URL: <input
           type='text'
           name='imageUrl'
           className='student-form-control'
           onChange={this.handleChange}
-          //value={this.state.imageUrl}
+          value={this.state.imageUrl}
           />
         Email: <input
           type='text'
           name='email'
           className='student-form-control'
           onChange={this.handleChange}
-          //value={this.state.email}
+          value={this.state.email}
           />
+        Campus: <select name='campusId' onClick={this.handleChange}>
+          <option name='campusId'value='null'>   </option>
+          {
+            this.props.campuses.map(campus => {
+              return (
+                <option
+                key={campus.id}
+                name='campusId'
+                value={campus.id}>{campus.name}</option>
+              )
+            })
+          }
+          </select>
           <p></p>
           <p></p>
-        <button type='submit' onClick={this.handleSubmit}>Submit</button>
+        <button type='submit' onClick={this.validateForm}>Submit</button>
       </form>
     );
   }
 }
 
+const mapStateToProps = state => ({
+  campuses: state.campuses.allCampuses
+});
 
-const mapDispatchToProps = dispatch => ({ addNewStudentToServer: (student) => dispatch(postStudent(student))})
+const mapDispatchToProps = dispatch => ({
+  fetchInitialCampuses: () => { dispatch(fetchCampuses()) },
+  addNewStudentToServer: (student) => dispatch(postStudent(student))
+})
 
-export default connect(null, mapDispatchToProps)(NewStudent);
+export default connect(mapStateToProps, mapDispatchToProps)(NewStudent);
