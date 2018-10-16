@@ -23,6 +23,15 @@ const campusReducer = (campuses = initialCampuses, action) => {
       case 'ADD_CAMPUS':
         return { ...campuses, allCampuses:  [...campuses.allCampuses, action.campus]}
 
+      case 'REMOVE_CAMPUS':
+        return {...campuses, allCampuses: campuses.allCampuses.slice(0, action.index).concat(campuses.allCampuses.slice(action.index+1))}
+//const removeCounter = (list) => {
+// return list.slice(0, index).concat(list.slice(index+1));
+
+// let newState = [...state];
+// newState.splice(action.index, 1);
+// return newState;
+
       default: return campuses;
     }
 }
@@ -38,6 +47,9 @@ const studentReducer = (students = initialStudents, action) => {
 
       case 'ADD_STUDENT':
         return {...students, allStudents: [...students.allStudents, action.student]}
+
+        case 'REMOVE_STUDENT':
+        return {...students, allStudents: students.allStudents.slice(0, action.index).concat(students.allStudents.slice(action.index+1))}
 
       default: return students;
     }

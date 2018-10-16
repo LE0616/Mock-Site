@@ -14,6 +14,9 @@ const gotSingleStudent = (singleStudent) => ({type: 'GOT_SINGLE_STUDENT_FROM_SER
 const addCampus = (campus) => ({type: 'ADD_CAMPUS', campus})
 const addStudent = (student) => ({type: 'ADD_STUDENT', student})
 
+const removeCampus = (index) => ({type: 'REMOVE_CAMPUS', index})
+const removeStudent = (index) => ({type: 'REMOVE_STUDENT', index})
+
 //Fetching ALL
 export const fetchCampuses = () => {
   return async (dispatch) => {
@@ -44,7 +47,6 @@ export const fetchStudent = (id) => {
     dispatch(gotSingleStudent(data));
   }
 }
-
 //Posting new instance
 export const postCampus = (campus) => {
   return async (dispatch) => {
@@ -53,7 +55,6 @@ export const postCampus = (campus) => {
     dispatch(addCampus(data));
   }
 }
-
 export const postStudent = (student) => {
   return async (dispatch) => {
     const { data } = await axios.post('/api/students', student);
@@ -61,7 +62,25 @@ export const postStudent = (student) => {
     dispatch(addStudent(data));
   }
 }
+//Deleting an instance
+export const deleteStudent = (id, index) => {
+  return async (dispatch) => {
+  await axios.delete(`/api/students/${id}`);
 
+
+  //console.log('**index?: ', index);
+  dispatch(removeStudent(index));
+  }
+}
+export const deleteCampus = (id, index) => {
+  return async (dispatch) => {
+  await axios.delete(`/api/campuses/${id}`);
+
+
+  //console.log('**index?: ', index);
+  dispatch(removeCampus(index));
+  }
+}
 
 
 export default createStore(

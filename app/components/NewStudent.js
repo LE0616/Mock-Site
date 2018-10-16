@@ -9,7 +9,7 @@ class NewStudent extends React.Component {
     this.state = {
       firstName: '',
       lastName: '',
-      imageUrl: '',
+      imageUrl: null,
       email: '',
     }
     this.handleChange = this.handleChange.bind(this);
@@ -24,12 +24,6 @@ class NewStudent extends React.Component {
     e.preventDefault();
     const newStudent = this.state;
     this.props.addNewStudentToServer(newStudent);
-    // this.setState({
-    //   firstName: '',
-    //   lastName: '',
-    //   imageUrl: '',
-    //   email: '',
-    // });
   }
 
   render() {

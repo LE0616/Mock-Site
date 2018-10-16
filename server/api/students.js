@@ -40,8 +40,11 @@ router.post('/', async (req, res) => {
 router.delete('/:studentId', async (req, res) => {
   try {
     const id = req.params.studentId;
-    await Student.destroy({ where: { id }});
-    res.send(204).end();
+    await Student.destroy({
+      where: {
+        id: id
+      }});
+    res.status(204).send('Student was removed successfully!');
   } catch (err) {
     res.send(err);
   }

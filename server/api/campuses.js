@@ -39,10 +39,12 @@ router.post('/', async (req, res) => {
 //DELETE /api/campuses/:campusId
 router.delete('/:campusId', async (req, res) => {
   try {
-    const id = req.params.CampusId;
-    await Campus.destroy({ where: { id }});
-
-    res.send(204).end();
+    const id = req.params.campusId;
+    await Campus.destroy({
+      where: {
+        id: id
+      }});
+    res.status(204).send('Student was removed successfully!');
   } catch (err) {
     res.send(err);
   }
