@@ -16,11 +16,12 @@ class Students extends React.Component {
   }
 //pos = myArray.map(function(e) { return e.hello; }).indexOf('stevie');
   handleClick(e) {
-    const id = e.target.value;
+    const id = +e.target.value;
     const idArr = this.props.students.map(elem => elem.id);
-    console.log('mapper retruns: ', this.props.students.map(elem => elem.id));
+    const index = idArr.indexOf(id);
+
+    console.log('mapper retruns: ', idArr);
     console.log('id:', id);
-    const index = idArr.indexOf(`${id}`);
     console.log('INDEX?: ', index);
     this.props.removeFormerStudent(id, index);
   }

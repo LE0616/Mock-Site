@@ -15,8 +15,10 @@ class Campuses extends React.Component {
   }
 
   handleClick(e) {
-    console.log('e.target.value as ID in ClickHandler: ', e.target.value)
-    this.props.removeFormerCampus(e.target.value);
+    const id = +e.target.value;
+    const idArr = this.props.campuses.map(elem => elem.id)
+    const index = idArr.indexOf(id);
+    this.props.removeFormerCampus(id, index);
   }
 
   render () {
@@ -56,7 +58,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   fetchInitialCampuses: () => { dispatch(fetchCampuses()) },
-  removeFormerCampus: (id) => { dispatch(deleteCampus(id))}
+  removeFormerCampus: (id, index) => { dispatch(deleteCampus(id, index))}
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Campuses);

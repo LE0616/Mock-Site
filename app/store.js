@@ -67,8 +67,6 @@ export const deleteStudent = (id, index) => {
   return async (dispatch) => {
   await axios.delete(`/api/students/${id}`);
 
-
-  //console.log('**index?: ', index);
   dispatch(removeStudent(index));
   }
 }
@@ -76,8 +74,6 @@ export const deleteCampus = (id, index) => {
   return async (dispatch) => {
   await axios.delete(`/api/campuses/${id}`);
 
-
-  //console.log('**index?: ', index);
   dispatch(removeCampus(index));
   }
 }
