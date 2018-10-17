@@ -2,13 +2,31 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { fetchCampus } from '../store'
+import UpdateCampus from './UpdateCampus'
 
 
 class SingleCampus extends React.Component {
 
+  constructor() {
+    super()
+    this.state = {
+      viewForm: false
+    }
+    this.addForm = this.addForm.bind(this);
+    this.removeForm = this.removeForm.bind(this);
+  }
+
   async componentDidMount() {
     const id = this.props.match.params.campusId;
     this.props.fetchInitialCampus(id);
+  }
+
+  addForm() {
+    this.setState({ viewForm: true })
+  }
+
+  removeForm() {
+    this.setState({ viewForm: false })
   }
 
   render() {
@@ -43,10 +61,20 @@ class SingleCampus extends React.Component {
                 )
               })  : ( <h3>This campus has no active students.</h3> )
             }</ol>
+            </div>
             <p></p>
             <p></p>
-            <NavLink to='/campuses/update_campus'>Edit Campus Profile</NavLink>
-          </div>
+            <div>
+                <p></p>
+                <p></p>
+                <button type='button' onClick={this.addForm}>Edit Campus Profile</button>
+                <p></p>
+                {
+                this.state.viewForm ?
+                <UpdateCampus removeForm={this.removeForm} campusId={campus.id} />
+                  : ''
+                }
+              </div>
       </div>
     )
   }
@@ -56,8 +84,7 @@ const mapStateToProps = state => ({
   campus: state.campuses.singleCampus
 });
 
-const mapDispatchToProps = dispatch => ({fetchInitialCampus: (id) => {
-  console.log('**CAMPUS_ID_INSIDE_MAPDISPATCH: ', id);
-  dispatch(fetchCampus(id)) }});
+const mapDispatchToProps = dispatch => ({
+  fetchInitialCampus: (id) => { dispatch(fetchCampus(id)) }});
 
 export default connect(mapStateToProps, mapDispatchToProps)(SingleCampus);

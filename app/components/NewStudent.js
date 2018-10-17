@@ -1,6 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { postStudent, fetchCampuses } from '../store'
+import urlRegex from 'url-regex'
+import validator from 'email-validator'
 
 
 class NewStudent extends React.Component {
@@ -47,12 +49,13 @@ class NewStudent extends React.Component {
       alert('> first name required <')
     } else if (this.state.lastName == '') {
       alert('> last name required <')
-    } else if (this.state.email == '') {
-      alert('> email required - must be valid address <')
+    } else if (this.state.imageUrl !== null && urlRegex({exact: true}).test(this.state.imageUrl) === false) {
+      alert('> photo must be a valid imageUrl <')
+    } else if (validator.validate(this.state.email) === false) {
+      alert('> email is required and must be a valid email address <')
     } else {
       this.handleSubmit(e)
     }
-
   }
 
   render() {

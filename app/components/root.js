@@ -8,8 +8,6 @@ import SingleCampus from './SingleCampus'
 import SingleStudent from './SingleStudent'
 import NewCampus from './NewCampus'
 import NewStudent from './NewStudent'
-import UpdateStudent from './UpdateStudent'
-import UpdateCampus from './UpdateCampus'
 import NotFound from './NotFound'
 
 // import WithLoading from './WithLoading'
@@ -28,11 +26,10 @@ const Root = () => {
           <Switch>
             <Route exact path={'/campuses'} render={(routeProps) => <Campuses {...routeProps} />} />
             <Route exact path={'/campuses/add_campus'} render={(routeProps) => <NewCampus {...routeProps}/>} />
-            <Route exact path={'/campuses/update_campus'} render={(routeProps) => <UpdateCampus {...routeProps}/>} />
             <Route exact path={'/campuses/:campusId'} render={(routeProps) => <SingleCampus {...routeProps} />} />
+
             <Route exact path={'/students'} render={(routeProps) => <Students {...routeProps} />} />
             <Route exact path={'/students/add_student'} render={(routeProps) => <NewStudent {...routeProps} />} />
-            <Route exact path={'/students/update_student'} render={(routeProps) => <UpdateStudent {...routeProps} />} />
             <Route exact path={'/students/:studentId'} render={(routeProps) => <SingleStudent {...routeProps} />} />
 
             <Route exact path={'/'} render={(routeProps) => <Campuses {...routeProps} />} />

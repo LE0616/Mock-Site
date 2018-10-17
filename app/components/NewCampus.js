@@ -1,14 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { postCampus } from '../store'
-
+import urlRegex from 'url-regex'
 
 class NewCampus extends React.Component {
   constructor(){
     super();
     this.state = {
       name: '',
-      imageUrl: '',
+      imageUrl: null,
       address: '',
       description: ''
     }
@@ -28,7 +28,7 @@ class NewCampus extends React.Component {
     this.props.addNewCampusToServer(newCampus);
     this.setState({
       name: '',
-      imageUrl: '',
+      imageUrl: null,
       address: '',
       description: ''
     });
@@ -41,10 +41,12 @@ class NewCampus extends React.Component {
       alert('> name required <')
     } else if (this.state.address == '') {
       alert('> address required <')
-    } else {
+    } else if (this.state.imageUrl !== null && urlRegex({exact: true}).test(this.state.imageUrl) === false) {
+      alert('> photo must be a valid imageUrl <')
+    }
+    else {
       this.handleSubmit(e)
     }
-
   }
 
   render() {

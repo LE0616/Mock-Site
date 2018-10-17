@@ -2,12 +2,31 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { fetchStudent } from '../store'
+import UpdateStudent from './UpdateStudent'
 
 
 class SingleStudent extends React.Component {
+
+  constructor() {
+    super()
+    this.state = {
+      viewForm: false
+    }
+    this.addForm = this.addForm.bind(this);
+    this.removeForm = this.removeForm.bind(this);
+  }
+
   async componentDidMount() {
     const id = this.props.match.params.studentId;
     this.props.fetchInitialStudent(id);
+  }
+
+  addForm() {
+    this.setState({ viewForm: true })
+  }
+
+  removeForm() {
+    this.setState({ viewForm: false })
   }
 
   render () {
@@ -34,11 +53,19 @@ class SingleStudent extends React.Component {
                   : ( <p>This student is not enrolled.</p> )
                   }
                 </div>
+              <div>
                 <p></p>
                 <p></p>
-                <NavLink studentId={student.id} to='/students/update_student'>Edit Student Profile</NavLink>
-            </div>
-             )
+                <button type='button' onClick={this.addForm}>Edit Student Profile</button>
+                <p></p>
+                {
+                this.state.viewForm ?
+                <UpdateStudent removeForm={this.removeForm} studentId={student.id} />
+                  : ''
+                }
+              </div>
+           </div>
+            )
   }
 }
 const mapStateToProps = state => ({
@@ -46,8 +73,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchInitialStudent: (id) => {
-    console.log('**STUDENT_ID_INSIDE_MAPDISPATCH: ', id);
-    dispatch(fetchStudent(id)) }});
+  fetchInitialStudent: (id) => { dispatch(fetchStudent(id)) }});
 
 export default connect(mapStateToProps, mapDispatchToProps)(SingleStudent);
