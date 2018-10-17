@@ -34,6 +34,9 @@ class SingleStudent extends React.Component {
                   : ( <p>This student is not enrolled.</p> )
                   }
                 </div>
+                <p></p>
+                <p></p>
+                <NavLink studentId={student.id} to='/students/update_student'>Edit Student Profile</NavLink>
             </div>
              )
   }

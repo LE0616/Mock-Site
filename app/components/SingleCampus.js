@@ -43,6 +43,9 @@ class SingleCampus extends React.Component {
                 )
               })  : ( <h3>This campus has no active students.</h3> )
             }</ol>
+            <p></p>
+            <p></p>
+            <NavLink to='/campuses/update_campus'>Edit Campus Profile</NavLink>
           </div>
       </div>
     )

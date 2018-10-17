@@ -77,6 +77,23 @@ export const deleteCampus = (id, index) => {
   dispatch(removeCampus(index));
   }
 }
+//Updating an instance
+export const updateStudent = (id, studentChanges) => {
+  return async (dispatch) => {
+    await axios.put(`/api/students/${id}`, studentChanges);
+
+    const { data } = await axios.get(`/api/students/${id}`);
+    dispatch(gotSingleStudent(data));
+  }
+}
+export const updateCampus = (id, campusChanges) => {
+  return async (dispatch) => {
+    await axios.put(`/api/campuses/${id}`, campusChanges);
+
+    const { data } = await axios.get(`/api/campuses/${id}`);
+    dispatch(gotSingleCampus(data));
+  }
+}
 
 
 export default createStore(
