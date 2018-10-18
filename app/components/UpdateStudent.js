@@ -25,16 +25,15 @@ class UpdateStudent extends React.Component {
   }
 
   handleChange(e) {
-    console.log('this.state BEFORE change:', this.state);
     const key = this.state.chngKey;
     this.setState({ chngObj: { [key]: e.target.value }});
-    console.log('this.state AFTER change:', this.state)
   }
 
   handleSubmit(e) {
     e.preventDefault();
     const changes = this.state.chngObj
     const id = this.props.studentId
+
     this.props.sendChanges(id, changes)
     this.setState({});
     alert('Update Submitted!');
@@ -45,6 +44,7 @@ class UpdateStudent extends React.Component {
     e.preventDefault();
     const key = this.state.chngKey;
     const value = this.state.chngObj[key];
+
       if (key === 'imageUrl' && urlRegex({exact: true}).test(value) === false) {
         alert('must be a valid image URL')
       } else if (key === 'email' && validator.validate(value) === false) {

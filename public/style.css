@@ -4,24 +4,35 @@
  */
 
 * {
+  scroll-behavior: smooth;
   box-sizing: border-box;
   font-family: arial, sans-serif;
 }
 
 body {
   background: linear-gradient(#ffffff, #c0c0c0);
+  font-family: Helvetica, Arial, sans-serif;
   height: 100vh;
-  padding: 0;
-  margin: 0;
-  width: 100vw;
+  padding: 10px;
+  margin: 10px;
+  width: 110vw;
+}
+
+img[alt='logo'] {
+  height: 3.5em;
+  margin: 15px;
 }
 
 nav {
+  font-family: "Saira Extra Condensed", sans-serif;
   align-items: center;
-  background-color: #333333;
+  opacity: 0.75;
+  background-color: #0c0c0c;
   color: #c0c0c0;
   display: flex;
-  height: 80px;
+  flex-direction: row;
+  width: 95%;
+  height: 100px;
   padding: 10px;
 }
 
@@ -30,4 +41,40 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: 95%;
 }
+
+
+.nav-item {
+  margin-right: 5px;
+  margin-left: 5px;
+  margin: 20px;
+ }
+
+.campuses-list {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 2em;
+}
+.campus-item {
+  flex:1;
+  margin-top: 0.5em;
+}
+
+@media (min-width: 400px) {
+  .campus-item {
+  flex: 0 0 100%;
+  }
+}
+@media (min-width: 600px) {
+  .campus-item {
+  flex: 0 0 50%;
+  }
+}
+@media (min-width: 850px) {
+  .campus-item {
+  flex: 0 0 33%;
+  }
+}
+
+

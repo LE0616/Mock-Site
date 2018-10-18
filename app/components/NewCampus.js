@@ -4,6 +4,7 @@ import { postCampus } from '../store'
 import urlRegex from 'url-regex'
 
 class NewCampus extends React.Component {
+
   constructor(){
     super();
     this.state = {
@@ -24,7 +25,6 @@ class NewCampus extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const newCampus = this.state;
-    console.log('NEWCAMPUS INSIDE SUBMIT HANDLER: ', newCampus)
     this.props.addNewCampusToServer(newCampus);
     this.setState({
       name: '',

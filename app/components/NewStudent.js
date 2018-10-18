@@ -6,6 +6,7 @@ import validator from 'email-validator'
 
 
 class NewStudent extends React.Component {
+
   constructor(){
     super();
     this.state = {
@@ -25,7 +26,6 @@ class NewStudent extends React.Component {
   }
 
   handleChange(e) {
-    console.log('onChange:', {[e.target.name]: e.target.value})
     this.setState({ [e.target.name]: e.target.value });
   }
 

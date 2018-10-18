@@ -10,20 +10,18 @@ import NewCampus from './NewCampus'
 import NewStudent from './NewStudent'
 import NotFound from './NotFound'
 
-// import WithLoading from './WithLoading'
-// const CampusesWithLoading = WithLoading(Campuses);
-// const StudentsWithLoading = WithLoading(Students);
 
 const Root = () => {
   return (
 
       <div>
           <Navbar />
+          <header>
+            <h1>Welcome to the Margaret Hamilton Academy of JavaScript!</h1>
 
-        <main>
-          <h1>Welcome to the Margaret Hamilton Academy of JavaScript!</h1>
-          <p>This seems like a nice place to get started with some Routes!</p>
-          <Switch>
+          </header>
+          <main>
+            <Switch>
             <Route exact path={'/campuses'} render={(routeProps) => <Campuses {...routeProps} />} />
             <Route exact path={'/campuses/add_campus'} render={(routeProps) => <NewCampus {...routeProps}/>} />
             <Route exact path={'/campuses/:campusId'} render={(routeProps) => <SingleCampus {...routeProps} />} />

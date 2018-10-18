@@ -12,6 +12,7 @@ class SingleCampus extends React.Component {
     this.state = {
       viewForm: false
     }
+
     this.addForm = this.addForm.bind(this);
     this.removeForm = this.removeForm.bind(this);
   }

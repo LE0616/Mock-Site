@@ -32,11 +32,11 @@ class Campuses extends React.Component {
     :
     <div>
       <h3>CAMPUSES</h3>
-      <ul>
+      <ul class='campuses-list'>
         {
           campuses.map(campus => {
             return (
-              <li key={campus.id}>
+              <li class='campus-item' key={campus.id}>
                 <div>
                   <p></p>
                     <button value={campus.id} className='remove/X button' onClick ={this.handleClick}>X</button>

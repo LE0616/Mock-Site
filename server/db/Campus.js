@@ -11,7 +11,7 @@ const Campus = db.define('campus', {
   },
   imageUrl: {
     type: Sequelize.STRING,
-    defaultValue: 'https://media.glassdoor.com/l/23430/southern-illinois-university-office.jpg',
+    defaultValue: 'http://www.andredavisscifi.com/uploads/3/9/5/9/39593389/7659445_orig.jpg',
     validate: {
       isUrl: true,
     }

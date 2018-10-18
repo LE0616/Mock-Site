@@ -33,6 +33,7 @@ class UpdateCampus extends React.Component {
     const changes = this.state.chngObj
     const id = this.props.campusId
     this.props.sendChanges(id, changes)
+
     this.setState({ chngObj: {}, chngKey: '' });
     alert('Update Submitted!');
     this.props.removeForm();
@@ -42,6 +43,7 @@ class UpdateCampus extends React.Component {
     e.preventDefault();
     const key = this.state.chngKey || null;
     const value = this.state.chngObj[key] || null;
+
       if (key === 'imageUrl' && urlRegex({exact: true}).test(value) === false) {
         alert('must be a valid image URL')
       }
@@ -74,7 +76,6 @@ class UpdateCampus extends React.Component {
                   name={this.state.chngObj}
                   className='student-form-control'
                   onChange={this.handleChange}
-                  //value={''}
                   />
                   <button type='submit' onClick={this.validateInput}>Sumbit Change</button>
                   <p></p>
