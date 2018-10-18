@@ -17,7 +17,6 @@ router.get('/:campusId', async (req, res, next) => {
     const campus = await Campus.findById(req.params.campusId, {
       include: [{model: Student}]
     });
-    console.log('SINGLE campus INSIDE ROUTE', campus);
     res.json(campus);
   } catch (err) {
     next(err);
@@ -25,19 +24,18 @@ router.get('/:campusId', async (req, res, next) => {
 });
 
 //POST /api/campuses
-router.post('/', async (req, res) => {
+router.post('/', async (req, res, next) => {
   try {
     const campus = await Campus.create(req.body);
-    console.log('POSTED CAMPUS INSIDE ROUTE', campus);
     res.json(campus);
 
   } catch (err) {
-    res.send(err);
+    next(err);
   }
 })
 
 //DELETE /api/campuses/:campusId
-router.delete('/:campusId', async (req, res) => {
+router.delete('/:campusId', async (req, res, next) => {
   try {
     const id = req.params.campusId;
     await Campus.destroy({
@@ -46,18 +44,18 @@ router.delete('/:campusId', async (req, res) => {
       }});
     res.status(204).send('Student was removed successfully!');
   } catch (err) {
-    res.send(err);
+    next(err);
   }
 })
 
 //PUT-UPDATE /api/campuses/:campusId
-router.put('/:campusId',async (req, res) => {
+router.put('/:campusId',async (req, res, next) => {
   try {
     const campusToUpdate = await Campus.findById(req.params.campusId);
     await campusToUpdate.update(req.body);
     res.status(204).send('Campus updated!');
   } catch (err) {
-    res.send(err);
+    next(err);
   }
 })
 
