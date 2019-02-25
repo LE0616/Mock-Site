@@ -17,7 +17,7 @@ const Root = () => {
       <div>
           <Navbar />
           <header>
-            <h1>Welcome to the Margaret Hamilton Academy of JavaScript!</h1>
+            <h1>Welcome to the Mock Academy of Space Exploration!</h1>
 
           </header>
           <main>
